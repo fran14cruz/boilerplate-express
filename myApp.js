@@ -9,6 +9,13 @@ app.get('/', function(req, res) {
   res.sendFile(absolutePath);
 });
 
+app.get('/json', function(req, res) {
+  const data = {
+    "message": "Hello json"
+  };
+  res.json(data);
+});
+
 
 
 
