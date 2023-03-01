@@ -15,13 +15,15 @@ app.get('/', function(req, res) {
 
 // sending a json object
 app.get('/json', function(req, res) {
-  const data = {
-    "message": "Hello json"
-  };
-  // user environment variable
+  let helloJSON = 'Hello json';
+  // use environment variable
   if (process.env.MESSAGE_STYLE === 'uppercase') {
-    data.message.toUpperCase();
+    helloJSON = helloJSON.toUpperCase();
   }
+
+  const data = {
+    "message": helloJSON
+  };
   res.json(data);
 });
 
