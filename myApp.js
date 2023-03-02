@@ -1,7 +1,14 @@
 let express = require('express');
 let app = express();
-require('dotenv').config({ path: require('find-config')('.env') });
+require('dotenv').config();
 console.log(process.env.MESSAGE_STYLE)
+
+// Root-Level Request Logger Middleware
+app.use(function middleware(req, res, next) {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+  // note: if you go to /json, you should see 'GET /json - ::1' in the console
+});
 
 // now you can do: mysite.com/public/style.css
 app.use('/public', express.static(__dirname + '/public'));
