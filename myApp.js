@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
-require('dotenv').config();
+const dotenv = require('dotenv')
+dotenv.config();
 console.log(process.env.MESSAGE_STYLE)
 
 // now you can do: mysite.com/public/style.css
@@ -14,20 +15,17 @@ app.get('/', function(req, res) {
 
 // sending a json object
 app.get('/json', function(req, res) {
-  const helloJSON = 'Hello json';
-  let message;
+  let helloJSON = 'Hello json';
 
   // use environment variable
-  const mySecret = process.env['MESSAGE_STYLE'];
+  //const mySecret = process.env['MESSAGE_STYLE'];
 
   if (mySecret === 'uppercase') {
-    message = helloJSON.toUpperCase();
-  } else {
-    message = helloJSON;
+    helloJSON = helloJSON.toUpperCase();
   }
 
   const data = {
-    "message": message
+    "message": helloJSON
   };
   res.json(data);
 });
