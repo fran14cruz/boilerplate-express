@@ -1,8 +1,7 @@
-require('dotenv').config();
-
 let express = require('express');
 let app = express();
-console.log('Hello World')
+require('dotenv').config();
+console.log(process.env.MESSAGE_STYLE)
 
 // now you can do: mysite.com/public/style.css
 app.use('/public', express.static(__dirname + '/public'));
