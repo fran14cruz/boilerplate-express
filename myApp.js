@@ -4,7 +4,7 @@ require('dotenv').config();
 console.log(process.env.MESSAGE_STYLE)
 
 // Root-Level Request Logger Middleware
-app.use(function middleware(req, res, next) {
+app.use(function middleware(req, res, next) { // 'middleware' name is not required
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
   // note: if you go to /json, you should see 'GET /json - ::1' in the console
@@ -34,6 +34,13 @@ app.get('/json', function(req, res) {
   res.json(data);
 });
 
+// Chain middleware to create a time server
+app.get('/now', function(req, res, next) {
+  req.time = new Date().toString();
+  next();
+}, function(req, res) {
+  res.json({time: req.time});
+});
 
 
 
