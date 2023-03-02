@@ -18,8 +18,10 @@ app.get('/json', function(req, res) {
   let helloJSON = 'Hello json';
 
   // use environment variable
-  //const mySecret = process.env['MESSAGE_STYLE'];
-
+  const mySecret = process.env['MESSAGE_STYLE'];
+  if (process.env.MESSAGE_STYLE === 'uppercase') {
+    helloJSON = helloJSON.toUpperCase();
+  }
   if (mySecret === 'uppercase') {
     helloJSON = helloJSON.toUpperCase();
   }
