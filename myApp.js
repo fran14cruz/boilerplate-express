@@ -48,6 +48,11 @@ app.get('/:word/echo', function(req, res) {
   res.json({ echo: req.params.word });
 });
 
+// Get query parameter input from the client
+app.get('/name', function(req, res) {
+  res.json({ name: `${req.query.first} ${req.query.last}`});
+  // test route: mysite.com/name?first=francisco&last=cruz
+});
 
 
 
