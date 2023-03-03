@@ -1,7 +1,7 @@
 let express = require('express');
 let app = express();
 require('dotenv').config();
-console.log(process.env.MESSAGE_STYLE)
+const bodyParser = require('body-parser');
 
 // Root-Level Request Logger Middleware
 app.use(function middleware(req, res, next) { // 'middleware' name is not required
@@ -12,6 +12,9 @@ app.use(function middleware(req, res, next) { // 'middleware' name is not requir
 
 // now you can do: mysite.com/public/style.css
 app.use('/public', express.static(__dirname + '/public'));
+
+// Use body-parser to Parse POST Requests
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function(req, res) {
   let absolutePath = __dirname + '/views/index.html';
