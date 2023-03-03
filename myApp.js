@@ -60,6 +60,8 @@ app.route('/name')
   })
   .post(function(req, res) {
     res.json({ name: `${req.body.first} ${req.body.last}` });
+    // test route: mysite.com
+    // sumit the form, you'll be redirected to mysite.com/name
   });
 
 
