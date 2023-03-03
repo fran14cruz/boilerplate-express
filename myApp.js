@@ -52,10 +52,15 @@ app.get('/:word/echo', function(req, res) {
 });
 
 // Get query parameter input from the client
-app.get('/name', function(req, res) {
-  res.json({ name: `${req.query.first} ${req.query.last}`});
-  // test route: mysite.com/name?first=francisco&last=cruz
-});
+// Get Data from POST Requests
+app.route('/name')
+  .get(function(req, res) {
+    res.json({ name: `${req.query.first} ${req.query.last}`});
+    // test route: mysite.com/name?first=francisco&last=cruz
+  })
+  .post(function(req, res) {
+    res.json({ name: `${req.body.first} ${req.body.last}` });
+  });
 
 
 
